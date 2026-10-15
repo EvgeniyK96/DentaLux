@@ -1,0 +1,19 @@
+.cta { padding-block: clamp(24px, 4vw, 48px) clamp(64px, 9vw, 112px); }
+.cta__inner {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center;
+  padding: clamp(32px, 5vw, 64px);
+  border-radius: 36px;
+  background: var(--sky-700);
+  color: #fff;
+  background-image: radial-gradient(circle at 100% 0%, rgba(125, 211, 252, .35), transparent 50%);
+}
+.cta h2 { color: #fff; font-size: clamp(26px, 3vw, 38px); line-height: 1.15; }
+.cta__text p { margin-top: 16px; color: rgba(255, 255, 255, .85); max-width: 52ch; }
+.cta__text .btn { margin-top: 28px; }
+.cta__contacts { display: grid; gap: 18px; font-size: 17px; font-weight: 500; }
+.cta__contacts li { display: flex; align-items: center; gap: 14px; }
+.cta__contacts svg { flex-shrink: 0; color: var(--sky-200); }
+.cta__contacts a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 860px) {
+  .cta__inner { grid-template-columns: 1fr; border-radius: 28px; }
+}

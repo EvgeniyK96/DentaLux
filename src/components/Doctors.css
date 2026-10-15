@@ -1,0 +1,14 @@
+.doctors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.doctor__photo {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4 / 5; border-radius: var(--r-lg);
+  background: linear-gradient(160deg, var(--sky-200), var(--sky-600));
+}
+.doctor__photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
+.doctor:hover .doctor__photo img { transform: scale(1.04); }
+.doctor__initials { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--ff-display); font-size: 40px; color: #fff; }
+.doctor h3 { margin-top: 18px; font-size: 19px; }
+.doctor__role { display: block; margin-top: 4px; font-weight: 600; font-size: 15px; color: var(--sky-700); }
+.doctor__exp { margin-top: 6px; font-size: 14.5px; color: var(--muted); }
+@media (max-width: 960px) { .doctors { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .doctors { gap: 16px; } .doctor h3 { font-size: 17px; } }

@@ -1,0 +1,7 @@
+.reasons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 48px; }
+.reason { padding-top: 22px; border-top: 2px solid var(--sky-100); }
+.reason svg { color: var(--sky-600); }
+.reason h3 { margin-top: 16px; font-size: 19px; }
+.reason p { margin-top: 8px; color: var(--slate); font-size: 16px; }
+@media (max-width: 960px) { .reasons { grid-template-columns: repeat(2, 1fr); gap: 36px 32px; } }
+@media (max-width: 600px) { .reasons { grid-template-columns: 1fr; gap: 28px; } }

@@ -1,0 +1,134 @@
+/* =========================================================
+   ДентаЛюкс — токены и базовые стили.
+   Палитра клиники: свежий голубой + белый, «улыбчивый» жёлтый для акцентов.
+   Компонентные стили лежат рядом с компонентами (src/components/*.css).
+   ========================================================= */
+:root {
+  --sky-50: #F0F9FF;
+  --sky-100: #E0F2FE;
+  --sky-200: #BAE6FD;
+  --sky-500: #0EA5E9;
+  --sky-600: #0284C7;
+  --sky-700: #0369A1;
+  --sky-800: #075985;
+  --sky-900: #0B3B5C;
+  --smile: #FACC15;
+  --mint: #16A34A;
+
+  --ink: #0F2A3F;
+  --slate: #47637A;
+  --muted: #6E8699;
+  --line: #E2ECF3;
+  --bg: #FFFFFF;
+  --bg-tint: #F3F8FB;
+
+  --r-sm: 10px;
+  --r: 18px;
+  --r-lg: 28px;
+  --r-full: 999px;
+  --shadow-sm: 0 1px 2px rgba(15, 42, 63, .06), 0 4px 12px -4px rgba(15, 42, 63, .06);
+  --shadow: 0 22px 44px -22px rgba(8, 89, 133, .30);
+  --shadow-lg: 0 40px 80px -32px rgba(8, 89, 133, .38);
+  --ring: 0 0 0 3px rgba(14, 165, 233, .35);
+
+  --ff-display: 'Unbounded', 'Onest', system-ui, sans-serif;
+  --ff-body: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --container: 1200px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --header-h: 72px;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 12px);
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--ff-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 { margin: 0; color: var(--ink); }
+h1, h2 { font-family: var(--ff-display); font-weight: 600; letter-spacing: -.02em; }
+h3, h4 { font-weight: 600; line-height: 1.3; }
+p { margin: 0; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 6px; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Секции ---------- */
+.section { padding-block: clamp(64px, 9vw, 112px); }
+.section--tint { background: var(--bg-tint); }
+
+.section-head { max-width: 640px; margin-bottom: clamp(32px, 4.5vw, 52px); }
+.section-head__title { font-size: clamp(27px, 3.3vw, 40px); line-height: 1.15; }
+.section-head__lead { margin-top: 14px; font-size: 18px; color: var(--slate); max-width: 56ch; }
+
+/* ---------- Кнопки ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--r-full);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out), background-color .2s, color .2s;
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--sky-600); color: #fff; box-shadow: 0 10px 24px -10px rgba(2, 132, 199, .7); }
+.btn--primary:hover { background: var(--sky-700); box-shadow: 0 14px 28px -12px rgba(2, 132, 199, .8); }
+.btn--ghost { background: transparent; color: var(--sky-800); box-shadow: inset 0 0 0 1.5px var(--sky-200); }
+.btn--ghost:hover { box-shadow: inset 0 0 0 1.5px var(--sky-500); background: var(--sky-50); }
+.btn--light { background: #fff; color: var(--sky-800); }
+.btn--light:hover { background: var(--sky-50); }
+.btn--sm { min-height: 42px; padding: 0 18px; font-size: 15px; }
+.btn--lg { min-height: 56px; padding: 0 30px; font-size: 17px; }
+.btn--block { width: 100%; }
+
+.link-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 0; border: 0; background: none;
+  font-weight: 600; font-size: 15px; color: var(--sky-700);
+}
+.link-btn:hover { color: var(--sky-900); }
+
+.stars { color: var(--smile); letter-spacing: 2px; font-size: 15px; line-height: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

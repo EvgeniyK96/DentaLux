@@ -1,0 +1,12 @@
+.stats { padding-block: 8px clamp(40px, 6vw, 72px); }
+.stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.stat { display: grid; gap: 6px; padding: 8px 28px; border-left: 1px solid var(--line); }
+.stat:first-child { border-left: 0; padding-left: 0; }
+.stat__value { font-family: var(--ff-display); font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; color: var(--sky-700); font-variant-numeric: tabular-nums; }
+.stat__label { font-size: 15px; color: var(--slate); }
+
+@media (max-width: 760px) {
+  .stats__grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
+  .stat:nth-child(3) { border-left: 0; padding-left: 0; }
+  .stat { padding: 4px 16px; }
+}

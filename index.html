@@ -1,507 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Стоматология «ДентаЛюкс» — современное лечение, имплантация и эстетика без боли. Опытные врачи, гарантия на работы, удобная онлайн-запись." />
-  <title>ДентаЛюкс — Стоматологическая клиника в Москве</title>
-
+  <meta name="description" content="Стоматология «ДентаЛюкс» в Алматы — лечение без боли, имплантация, эстетика и отбеливание. Опытные врачи, гарантия на работы, рассрочка 0%." />
+  <meta name="theme-color" content="#0284C7" />
+  <title>ДентаЛюкс — стоматология в Алматы</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%B7%3C/text%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet" />
+  <!-- Прелоадер: виден сразу, до загрузки JS. Скрывается из src/main.jsx (hidePreloader). -->
+  <style>
+    .preloader {
+      position: fixed; inset: 0; z-index: 1000;
+      display: grid; place-items: center;
+      background: #fff;
+      transition: opacity .55s ease, visibility .55s;
+    }
+    .preloader.is-done { opacity: 0; visibility: hidden; }
+    .preloader__inner { display: grid; justify-items: center; gap: 18px; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+    .preloader.is-done .preloader__inner { transform: scale(1.08); }
+    .preloader__tooth { width: 120px; height: 144px; overflow: visible; animation: pl-float 2.4s ease-in-out 1.6s infinite; }
+    .preloader__outline {
+      fill: none; stroke: #0284C7; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round;
+      stroke-dasharray: 1; stroke-dashoffset: 1;
+      animation: pl-draw 1.15s cubic-bezier(.65,0,.35,1) .1s forwards;
+    }
+    .preloader__fill { fill: #E0F2FE; opacity: 0; animation: pl-fade .5s ease 1.05s forwards; }
+    .preloader__shine { transform: translateX(-120px); animation: pl-shine 1s cubic-bezier(.4,0,.2,1) 1.25s forwards; }
+    .preloader__spark { fill: #FACC15; transform-origin: 84px 14px; transform: scale(0); animation: pl-spark .5s cubic-bezier(.3,1.6,.5,1) 1.6s forwards; }
+    .preloader__name {
+      font: 600 18px/1 'Onest', system-ui, sans-serif; letter-spacing: .01em; color: #0F2A3F;
+      opacity: 0; animation: pl-fade .5s ease 1.3s forwards;
+    }
+    .preloader__name b { color: #0284C7; font-weight: 700; }
+    @keyframes pl-draw { to { stroke-dashoffset: 0; } }
+    @keyframes pl-fade { to { opacity: 1; } }
+    @keyframes pl-shine { to { transform: translateX(120px); } }
+    @keyframes pl-spark { to { transform: scale(1); } }
+    @keyframes pl-float { 50% { transform: translateY(-6px); } }
+    @media (prefers-reduced-motion: reduce) {
+      .preloader__outline { stroke-dashoffset: 0; animation: none; }
+      .preloader__fill, .preloader__name { opacity: 1; animation: none; }
+      .preloader__spark { transform: scale(1); animation: none; }
+      .preloader__shine, .preloader__tooth { animation: none; }
+    }
+  </style>
 </head>
 <body>
-
-  <!-- ==================== HEADER ==================== -->
-  <header class="header" id="header">
-    <div class="container header__inner">
-      <a href="#hero" class="logo" aria-label="ДентаЛюкс — на главную">
-        <span class="logo__mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none">
-            <path d="M12 3c-2.5 0-3.5 1-5.5 1S3 3 3 6c0 2.5 1 5 2 8s1.5 4.5 2.5 4.5S9 16 12 16s3.5 2.5 4.5 2.5S18 17 19 14s2-5.5 2-8c0-3-1.5-2-3.5-2S14.5 3 12 3Z" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="logo__text">Дента<strong>Люкс</strong></span>
-      </a>
-
-      <nav class="nav" id="nav" aria-label="Главное меню">
-        <a href="#services" class="nav__link">Услуги</a>
-        <a href="#gallery" class="nav__link">До / После</a>
-        <a href="#doctors" class="nav__link">Врачи</a>
-        <a href="#prices" class="nav__link">Цены</a>
-        <a href="#reviews" class="nav__link">Отзывы</a>
-        <a href="#faq" class="nav__link">Вопросы</a>
-      </nav>
-
-      <div class="header__actions">
-        <a href="tel:+74951234567" class="header__phone">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>+7 (495) 123-45-67</span>
-        </a>
-        <a href="#booking" class="btn btn--primary btn--sm">Записаться</a>
-        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+  <div class="preloader" id="preloader" role="status" aria-label="Загрузка сайта">
+    <div class="preloader__inner">
+      <svg class="preloader__tooth" viewBox="0 0 100 120" aria-hidden="true">
+        <defs>
+          <path id="pl-tooth" pathLength="1" d="M50 22C58 12 70 8 78 14C88 22 88 40 84 52C81 60 79 66 78 74C76 88 72 104 66 108C61 111 58 104 57 96C56 86 54 78 50 76C46 78 44 86 43 96C42 104 39 111 34 108C28 104 24 88 22 74C21 66 19 60 16 52C12 40 12 22 22 14C30 8 42 12 50 22Z" />
+          <clipPath id="pl-clip"><use href="#pl-tooth" /></clipPath>
+          <linearGradient id="pl-shine-grad" x1="0" x2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" />
+            <stop offset=".5" stop-color="#fff" stop-opacity=".95" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <use class="preloader__fill" href="#pl-tooth" />
+        <g clip-path="url(#pl-clip)">
+          <g transform="rotate(18 50 60)"><rect class="preloader__shine" x="20" y="-10" width="38" height="140" fill="url(#pl-shine-grad)" /></g>
+        </g>
+        <use class="preloader__outline" href="#pl-tooth" />
+        <path class="preloader__spark" d="M84 2l2.6 9.4L96 14l-9.4 2.6L84 26l-2.6-9.4L72 14l9.4-2.6Z" />
+      </svg>
+      <span class="preloader__name">Дента<b>Люкс</b></span>
     </div>
-  </header>
-
-  <main>
-    <!-- ==================== HERO ==================== -->
-    <section class="hero" id="hero">
-      <div class="container hero__inner">
-        <div class="hero__content">
-          <span class="badge">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21 8 14 2 9.4h7.6L12 2z"/></svg>
-            Более 12 000 счастливых улыбок
-          </span>
-          <h1 class="hero__title">Здоровая улыбка <span>без боли</span> и стресса</h1>
-          <p class="hero__lead">
-            Современная стоматология полного цикла в центре Москвы. Лечим бережно,
-            честно и с пожизненной гарантией на имплантацию.
-          </p>
-
-          <div class="hero__cta">
-            <a href="#booking" class="btn btn--primary btn--lg">Записаться на приём</a>
-            <a href="#services" class="btn btn--ghost btn--lg">Наши услуги</a>
-          </div>
-
-          <ul class="hero__trust">
-            <li>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-              Гарантия на работы
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-              Лечение без боли
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-              Рассрочка 0%
-            </li>
-          </ul>
-        </div>
-
-        <div class="hero__media">
-          <div class="hero__photo" role="img" aria-label="Улыбающийся пациент стоматологической клиники">
-            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80" alt="Пациент с красивой улыбкой" loading="eager" onerror="this.style.display='none'" />
-          </div>
-          <div class="hero__card hero__card--rating">
-            <strong>4.9</strong>
-            <div>
-              <div class="stars" aria-label="Рейтинг 4.9 из 5">★★★★★</div>
-              <span>2 400+ отзывов</span>
-            </div>
-          </div>
-          <div class="hero__card hero__card--doc">
-            <span class="hero__card-dot"></span>
-            Свободные окошки на сегодня
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== STATS ==================== -->
-    <section class="stats" aria-label="Клиника в цифрах">
-      <div class="container stats__grid">
-        <div class="stat"><strong>18</strong><span>лет на рынке</span></div>
-        <div class="stat"><strong>12 000+</strong><span>довольных пациентов</span></div>
-        <div class="stat"><strong>24</strong><span>врача-эксперта</span></div>
-        <div class="stat"><strong>7</strong><span>лет гарантии</span></div>
-      </div>
-    </section>
-
-    <!-- ==================== SERVICES ==================== -->
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section__head">
-          <span class="section__eyebrow">Услуги</span>
-          <h2 class="section__title">Полный спектр стоматологии</h2>
-          <p class="section__subtitle">От профилактики до сложной имплантации — всё в одной клинике на современном оборудовании.</p>
-        </div>
-
-        <div class="services__grid">
-          <article class="service-card">
-            <span class="service-card__icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-3.5 1-5.5 1S3 3 3 6c0 2.5 1 5 2 8s1.5 4.5 2.5 4.5S9 16 12 16s3.5 2.5 4.5 2.5S18 17 19 14s2-5.5 2-8c0-3-1.5-2-3.5-2S14.5 3 12 3Z"/></svg>
-            </span>
-            <h3>Терапия и лечение</h3>
-            <p>Безболезненное лечение кариеса, пульпита и реставрация зубов под микроскопом.</p>
-            <span class="service-card__price">от 2 500 ₽</span>
-          </article>
-
-          <article class="service-card">
-            <span class="service-card__icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M8 6c0 4 8 4 8 8"/><circle cx="12" cy="4" r="2"/></svg>
-            </span>
-            <h3>Имплантация</h3>
-            <p>Восстановление зубов имплантами премиум-класса с пожизненной гарантией.</p>
-            <span class="service-card__price">от 34 900 ₽</span>
-          </article>
-
-          <article class="service-card">
-            <span class="service-card__icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21 8 14 2 9.4h7.6L12 2z"/></svg>
-            </span>
-            <h3>Эстетика и виниры</h3>
-            <p>Голливудская улыбка с помощью керамических виниров и художественной реставрации.</p>
-            <span class="service-card__price">от 24 000 ₽</span>
-          </article>
-
-          <article class="service-card">
-            <span class="service-card__icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            </span>
-            <h3>Отбеливание</h3>
-            <p>Профессиональное отбеливание ZOOM 4 — до 8 тонов светлее за один визит.</p>
-            <span class="service-card__price">от 12 000 ₽</span>
-          </article>
-
-          <article class="service-card">
-            <span class="service-card__icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8M12 8v8"/></svg>
-            </span>
-            <h3>Ортодонтия</h3>
-            <p>Исправление прикуса брекетами и элайнерами для детей и взрослых.</p>
-            <span class="service-card__price">от 45 000 ₽</span>
-          </article>
-
-          <article class="service-card">
-            <span class="service-card__icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-14 2 9h6"/></svg>
-            </span>
-            <h3>Детская стоматология</h3>
-            <p>Бережный подход к маленьким пациентам в игровой, дружелюбной атмосфере.</p>
-            <span class="service-card__price">от 1 900 ₽</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== BEFORE / AFTER GALLERY ==================== -->
-    <section class="section section--tint" id="gallery">
-      <div class="container">
-        <div class="section__head">
-          <span class="section__eyebrow">Результаты</span>
-          <h2 class="section__title">До и после наших работ</h2>
-          <p class="section__subtitle">Потяните за ползунок, чтобы увидеть преображение улыбки наших пациентов.</p>
-        </div>
-
-        <div class="ba">
-          <figure class="ba__item" data-ba>
-            <img class="ba__img ba__img--after" src="images/case-1-after.jpg" alt="Ровная белая улыбка после установки виниров" loading="lazy" />
-            <div class="ba__before">
-              <img class="ba__img" src="images/case-1-before.jpg" alt="Та же улыбка со щелью и потемнением до лечения" loading="lazy" />
-            </div>
-            <input type="range" min="0" max="100" value="50" class="ba__range" aria-label="Сравнение до и после" />
-            <span class="ba__handle" aria-hidden="true"></span>
-            <span class="ba__label ba__label--before">До</span>
-            <span class="ba__label ba__label--after">После</span>
-            <figcaption>Керамические виниры</figcaption>
-          </figure>
-
-          <figure class="ba__item" data-ba>
-            <img class="ba__img ba__img--after" src="images/case-2-after.jpg" alt="Светлые ровные зубы после реставрации и отбеливания" loading="lazy" />
-            <div class="ba__before">
-              <img class="ba__img" src="images/case-2-before.jpg" alt="Те же зубы с желтизной и налётом до лечения" loading="lazy" />
-            </div>
-            <input type="range" min="0" max="100" value="50" class="ba__range" aria-label="Сравнение до и после" />
-            <span class="ba__handle" aria-hidden="true"></span>
-            <span class="ba__label ba__label--before">До</span>
-            <span class="ba__label ba__label--after">После</span>
-            <figcaption>Реставрация и отбеливание</figcaption>
-          </figure>
-
-          <figure class="ba__item" data-ba>
-            <img class="ba__img ba__img--after" src="images/case-3-after.jpg" alt="Ровный зубной ряд после исправления прикуса" loading="lazy" />
-            <div class="ba__before">
-              <img class="ba__img" src="images/case-3-before.jpg" alt="Тот же прикус с щелью и смещением до лечения" loading="lazy" />
-            </div>
-            <input type="range" min="0" max="100" value="50" class="ba__range" aria-label="Сравнение до и после" />
-            <span class="ba__handle" aria-hidden="true"></span>
-            <span class="ba__label ba__label--before">До</span>
-            <span class="ba__label ba__label--after">После</span>
-            <figcaption>Исправление прикуса</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== WHY US ==================== -->
-    <section class="section" id="why">
-      <div class="container">
-        <div class="section__head">
-          <span class="section__eyebrow">Почему мы</span>
-          <h2 class="section__title">Причины доверить нам вашу улыбку</h2>
-        </div>
-
-        <div class="why__grid">
-          <div class="why__card">
-            <span class="why__icon">🛡️</span>
-            <h3>Честные цены</h3>
-            <p>Фиксируем стоимость лечения в договоре. Никаких доплат в процессе.</p>
-          </div>
-          <div class="why__card">
-            <span class="why__icon">😌</span>
-            <h3>Лечение без боли</h3>
-            <p>Современная анестезия и седация — комфорт на каждом этапе приёма.</p>
-          </div>
-          <div class="why__card">
-            <span class="why__icon">🔬</span>
-            <h3>Точность под микроскопом</h3>
-            <p>Работаем с оптическим увеличением для идеального результата.</p>
-          </div>
-          <div class="why__card">
-            <span class="why__icon">🧼</span>
-            <h3>Стерильность</h3>
-            <p>Многоступенчатая обработка и одноразовые инструменты для вашей безопасности.</p>
-          </div>
-          <div class="why__card">
-            <span class="why__icon">💳</span>
-            <h3>Рассрочка 0%</h3>
-            <p>Оплачивайте лечение частями без переплат и скрытых процентов.</p>
-          </div>
-          <div class="why__card">
-            <span class="why__icon">📄</span>
-            <h3>Гарантия до 7 лет</h3>
-            <p>Отвечаем за качество работ и сопровождаем пациента после лечения.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== DOCTORS ==================== -->
-    <section class="section section--tint" id="doctors">
-      <div class="container">
-        <div class="section__head">
-          <span class="section__eyebrow">Команда</span>
-          <h2 class="section__title">Врачи, которым доверяют</h2>
-          <p class="section__subtitle">Опытные специалисты с профильным образованием и регулярным повышением квалификации.</p>
-        </div>
-
-        <div class="doctors__grid">
-          <article class="doctor">
-            <div class="doctor__photo">
-              <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=500&q=80" alt="Анна Соколова, стоматолог-терапевт" onerror="this.style.display='none'" />
-            </div>
-            <h3>Анна Соколова</h3>
-            <span class="doctor__role">Терапевт-эндодонтист</span>
-            <p class="doctor__exp">Стаж 15 лет · 6 000+ пациентов</p>
-          </article>
-
-          <article class="doctor">
-            <div class="doctor__photo">
-              <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=500&q=80" alt="Дмитрий Орлов, хирург-имплантолог" onerror="this.style.display='none'" />
-            </div>
-            <h3>Дмитрий Орлов</h3>
-            <span class="doctor__role">Хирург-имплантолог</span>
-            <p class="doctor__exp">Стаж 18 лет · 2 500+ имплантов</p>
-          </article>
-
-          <article class="doctor">
-            <div class="doctor__photo">
-              <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=500&q=80" alt="Елена Ким, ортодонт" onerror="this.style.display='none'" />
-            </div>
-            <h3>Елена Ким</h3>
-            <span class="doctor__role">Ортодонт</span>
-            <p class="doctor__exp">Стаж 12 лет · эксперт по элайнерам</p>
-          </article>
-
-          <article class="doctor">
-            <div class="doctor__photo">
-              <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&q=80" alt="Максим Верес, детский стоматолог" onerror="this.style.display='none'" />
-            </div>
-            <h3>Максим Верес</h3>
-            <span class="doctor__role">Детский стоматолог</span>
-            <p class="doctor__exp">Стаж 10 лет · любимец малышей</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== PRICES ==================== -->
-    <section class="section" id="prices">
-      <div class="container">
-        <div class="section__head">
-          <span class="section__eyebrow">Цены</span>
-          <h2 class="section__title">Прозрачные цены на популярные услуги</h2>
-          <p class="section__subtitle">Первичная консультация и план лечения — бесплатно.</p>
-        </div>
-
-        <div class="prices">
-          <div class="price-row"><span>Консультация и осмотр</span><span class="price-row__val">Бесплатно</span></div>
-          <div class="price-row"><span>Профессиональная гигиена Air Flow</span><span class="price-row__val">4 500 ₽</span></div>
-          <div class="price-row"><span>Лечение кариеса (пломба)</span><span class="price-row__val">от 3 900 ₽</span></div>
-          <div class="price-row"><span>Отбеливание ZOOM 4</span><span class="price-row__val">от 12 000 ₽</span></div>
-          <div class="price-row"><span>Керамический винир</span><span class="price-row__val">от 24 000 ₽</span></div>
-          <div class="price-row price-row--hot"><span>Имплант «под ключ» <em>Хит</em></span><span class="price-row__val">от 34 900 ₽</span></div>
-          <div class="price-row"><span>Металлокерамическая коронка</span><span class="price-row__val">от 14 000 ₽</span></div>
-          <div class="price-row"><span>Брекет-система (одна челюсть)</span><span class="price-row__val">от 45 000 ₽</span></div>
-        </div>
-        <p class="prices__note">* Полный прайс уточняйте у администратора. Действует рассрочка 0%.</p>
-      </div>
-    </section>
-
-    <!-- ==================== REVIEWS ==================== -->
-    <section class="section section--tint" id="reviews">
-      <div class="container">
-        <div class="section__head">
-          <span class="section__eyebrow">Отзывы</span>
-          <h2 class="section__title">Что говорят наши пациенты</h2>
-        </div>
-
-        <div class="reviews" id="reviews-track">
-          <blockquote class="review">
-            <div class="stars">★★★★★</div>
-            <p>«Всю жизнь боялась стоматологов, но здесь впервые лечилась без единого укола боли. Врач всё объяснил, показал на снимке. Спасибо за новую улыбку!»</p>
-            <footer><strong>Ольга М.</strong><span>виниры</span></footer>
-          </blockquote>
-          <blockquote class="review">
-            <div class="stars">★★★★★</div>
-            <p>«Поставил два импланта у Дмитрия Орлова. Всё прошло быстро и без осложнений. Цена оказалась именно такой, как в договоре — приятно.»</p>
-            <footer><strong>Артём К.</strong><span>имплантация</span></footer>
-          </blockquote>
-          <blockquote class="review">
-            <div class="stars">★★★★★</div>
-            <p>«Вожу сюда сына 5 лет. Он теперь сам просится к врачу! Детский доктор — волшебник, никаких слёз и капризов.»</p>
-            <footer><strong>Наталья В.</strong><span>детская стоматология</span></footer>
-          </blockquote>
-          <blockquote class="review">
-            <div class="stars">★★★★★</div>
-            <p>«Сделала отбеливание перед свадьбой. Результат превзошёл ожидания — зубы стали заметно белее за один визит. Рекомендую!»</p>
-            <footer><strong>Ирина Л.</strong><span>отбеливание</span></footer>
-          </blockquote>
-        </div>
-
-        <div class="reviews__nav">
-          <button class="reviews__btn" id="rev-prev" aria-label="Предыдущий отзыв">‹</button>
-          <button class="reviews__btn" id="rev-next" aria-label="Следующий отзыв">›</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== FAQ ==================== -->
-    <section class="section" id="faq">
-      <div class="container container--narrow">
-        <div class="section__head">
-          <span class="section__eyebrow">Вопросы</span>
-          <h2 class="section__title">Частые вопросы</h2>
-        </div>
-
-        <div class="faq">
-          <details class="faq__item">
-            <summary>Правда ли, что лечение проходит без боли?</summary>
-            <p>Да. Мы используем современную компьютерную анестезию, а по желанию — седацию. Большинство процедур пациенты переносят абсолютно комфортно.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Даёте ли вы гарантию на лечение?</summary>
-            <p>На все работы предоставляется гарантия от 2 до 7 лет в зависимости от вида лечения. На имплантацию — пожизненная гарантия на импланты.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Можно ли оплатить лечение в рассрочку?</summary>
-            <p>Да, доступна беспроцентная рассрочка до 12 месяцев без переплат и участия банка при оформлении в клинике.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Сколько стоит первичная консультация?</summary>
-            <p>Первичная консультация, осмотр и составление плана лечения — бесплатно. Вы получите точную стоимость до начала лечения.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Как записаться на приём?</summary>
-            <p>Оставьте заявку в форме ниже или позвоните нам. Администратор перезвонит в течение 15 минут и подберёт удобное время.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== BOOKING / CTA ==================== -->
-    <section class="booking" id="booking">
-      <div class="container booking__inner">
-        <div class="booking__info">
-          <h2>Запишитесь на бесплатную консультацию</h2>
-          <p>Оставьте контакты — администратор перезвонит в течение 15 минут, ответит на вопросы и подберёт удобное время визита.</p>
-          <ul class="booking__list">
-            <li>📍 Москва, ул. Тверская, 15</li>
-            <li>🕘 Ежедневно с 9:00 до 21:00</li>
-            <li>📞 +7 (495) 123-45-67</li>
-          </ul>
-        </div>
-
-        <form class="booking__form" id="booking-form" novalidate>
-          <div class="field">
-            <label for="name">Ваше имя</label>
-            <input type="text" id="name" name="name" placeholder="Как к вам обращаться" required />
-          </div>
-          <div class="field">
-            <label for="phone">Телефон</label>
-            <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required />
-          </div>
-          <div class="field">
-            <label for="service">Услуга</label>
-            <select id="service" name="service">
-              <option value="">Выберите услугу</option>
-              <option>Консультация</option>
-              <option>Лечение / терапия</option>
-              <option>Имплантация</option>
-              <option>Виниры и эстетика</option>
-              <option>Отбеливание</option>
-              <option>Ортодонтия</option>
-              <option>Детская стоматология</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn--primary btn--lg btn--block">Записаться на приём</button>
-          <p class="booking__policy">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
-          <p class="booking__success" id="form-success" hidden>✓ Спасибо! Мы перезвоним вам в ближайшее время.</p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__col footer__col--brand">
-        <a href="#hero" class="logo logo--light">
-          <span class="logo__mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M12 3c-2.5 0-3.5 1-5.5 1S3 3 3 6c0 2.5 1 5 2 8s1.5 4.5 2.5 4.5S9 16 12 16s3.5 2.5 4.5 2.5S18 17 19 14s2-5.5 2-8c0-3-1.5-2-3.5-2S14.5 3 12 3Z" fill="currentColor"/></svg>
-          </span>
-          <span class="logo__text">Дента<strong>Люкс</strong></span>
-        </a>
-        <p>Современная стоматология полного цикла. Заботимся о вашей улыбке с 2008 года.</p>
-      </div>
-
-      <div class="footer__col">
-        <h4>Услуги</h4>
-        <a href="#services">Терапия</a>
-        <a href="#services">Имплантация</a>
-        <a href="#services">Виниры</a>
-        <a href="#services">Отбеливание</a>
-      </div>
-
-      <div class="footer__col">
-        <h4>Клиника</h4>
-        <a href="#doctors">Врачи</a>
-        <a href="#prices">Цены</a>
-        <a href="#reviews">Отзывы</a>
-        <a href="#faq">Вопросы</a>
-      </div>
-
-      <div class="footer__col">
-        <h4>Контакты</h4>
-        <a href="tel:+74951234567">+7 (495) 123-45-67</a>
-        <a href="mailto:hello@dentalux.ru">hello@dentalux.ru</a>
-        <span>Москва, ул. Тверская, 15</span>
-        <span>Ежедневно 9:00–21:00</span>
-      </div>
-    </div>
-    <div class="container footer__bottom">
-      <span>© 2026 ДентаЛюкс. Все права защищены.</span>
-      <span>Лицензия № ЛО-77-01-000000</span>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  </div>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
