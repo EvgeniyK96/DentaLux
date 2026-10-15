@@ -6,7 +6,7 @@ import './Footer.css';
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer on-dark">
       <div className="container footer__inner">
         <m.div className="footer__brand" {...reveal(0, 0.4)}>
           <Logo light />
@@ -34,9 +34,11 @@ export default function Footer() {
           <span>{CLINIC.hours}</span>
         </m.div>
       </div>
-      <div className="container footer__bottom">
-        <span>© {new Date().getFullYear()} {CLINIC.name}. Все права защищены.</span>
-        <span>{CLINIC.license}</span>
+      <div className="container">
+        <div className="footer__bottom">
+          <span>© {new Date().getFullYear()} {CLINIC.name}. Все права защищены.</span>
+          <span>{CLINIC.license}</span>
+        </div>
       </div>
     </footer>
   );

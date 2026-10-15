@@ -6,10 +6,12 @@
   position: relative; overflow: hidden;
   min-height: 600px;
   border-radius: var(--r-lg);
+  /* тёмная «студия»: светлее в центре, где стоит модель, с тёплым отсветом золота снизу */
   background:
-    radial-gradient(ellipse 60% 55% at 50% 48%, #fff 0%, rgba(255, 255, 255, 0) 100%),
-    linear-gradient(180deg, #EAF5FC 0%, #DCEEF9 100%);
-  box-shadow: inset 0 0 0 1px rgba(2, 132, 199, .08);
+    radial-gradient(ellipse 55% 50% at 50% 46%, rgba(64, 94, 140, .55) 0%, rgba(64, 94, 140, 0) 100%),
+    radial-gradient(ellipse 70% 30% at 50% 100%, rgba(184, 150, 90, .14) 0%, rgba(184, 150, 90, 0) 100%),
+    linear-gradient(180deg, var(--navy-700) 0%, var(--navy-900) 100%);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
 .jaw-canvas { position: absolute; inset: 0; }
 .jaw-canvas canvas { display: block; width: 100%; height: 100%; }
@@ -24,12 +26,13 @@
 .jaw-label__dot {
   position: absolute; left: -5px; top: -5px;
   width: 10px; height: 10px; border-radius: 50%;
-  background: var(--smile); box-shadow: 0 0 0 3px rgba(255, 255, 255, .9), 0 2px 6px rgba(15, 42, 63, .35);
+  background: var(--gold); box-shadow: 0 0 0 3px rgba(245, 241, 232, .9), 0 2px 8px rgba(0, 0, 0, .45);
 }
 .jaw-label__text {
   position: absolute; left: 14px; bottom: 10px;
   padding: 6px 11px; border-radius: var(--r-full);
-  background: rgba(15, 42, 63, .82); color: #fff;
+  background: rgba(245, 241, 232, .94); color: var(--navy-900);
+  box-shadow: 0 6px 16px -6px rgba(0, 0, 0, .5);
   font-size: 13px; font-weight: 500; line-height: 1.2; white-space: nowrap;
   backdrop-filter: blur(4px);
 }
@@ -38,12 +41,12 @@
   position: absolute; inset: 0;
   display: grid; place-content: center; justify-items: center; gap: 14px;
   padding: 24px; text-align: center;
-  color: var(--slate); font-size: 15px; font-weight: 500;
+  color: var(--fg-2); font-size: 15px; font-weight: 500;
   background: inherit;
 }
-.jaw__placeholder svg { color: var(--sky-500); animation: jaw-bob 2.2s ease-in-out infinite; }
-.jaw__progress { width: 180px; height: 4px; border-radius: 4px; background: rgba(2, 132, 199, .15); overflow: hidden; }
-.jaw__progress span { display: block; height: 100%; background: var(--sky-600); transform-origin: left; transition: transform .3s ease; }
+.jaw__placeholder svg { color: var(--gold); animation: jaw-bob 2.2s ease-in-out infinite; }
+.jaw__progress { width: 180px; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.jaw__progress span { display: block; height: 100%; background: var(--gold); transform-origin: left; transition: transform .3s ease; }
 @keyframes jaw-bob { 50% { transform: translateY(-6px); } }
 
 /* ---------- Панель ---------- */
@@ -53,23 +56,23 @@
 .jaw__topic {
   display: grid; gap: 2px; text-align: left;
   padding: 12px 14px;
-  border: 1px solid transparent; border-radius: 14px;
-  background: rgba(255, 255, 255, .6);
+  border: 1px solid var(--line); border-radius: 14px;
+  background: rgba(30, 50, 82, .55);
   transition: background-color .2s, border-color .2s, box-shadow .2s;
 }
-.jaw__topic:hover { background: #fff; }
-.jaw__topic.is-active { background: #fff; border-color: var(--sky-500); box-shadow: 0 8px 20px -14px rgba(2, 132, 199, .7); }
+.jaw__topic:hover { background: var(--surface); border-color: rgba(184, 150, 90, .45); }
+.jaw__topic.is-active { background: var(--surface); border-color: var(--gold); box-shadow: 0 10px 24px -16px rgba(0, 0, 0, .8); }
 .jaw__topic-title { font-weight: 600; font-size: 15.5px; }
-.jaw__topic-hint { font-size: 13px; color: var(--muted); }
-.jaw__topic.is-active .jaw__topic-title { color: var(--sky-700); }
+.jaw__topic-hint { font-size: 13px; color: var(--fg-3); }
+.jaw__topic.is-active .jaw__topic-title { color: var(--gold); }
 
 .jaw__info {
   flex: 1;
   display: flex; flex-direction: column;
   padding: 22px 22px 18px;
   border-radius: var(--r);
-  background: #fff;
-  box-shadow: var(--shadow-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 .jaw__steps { display: flex; gap: 6px; }
 .jaw__steps li { flex: 1; }
@@ -82,32 +85,32 @@
   border-radius: 4px; background: var(--line);
   transition: background-color .3s;
 }
-.jaw__step.is-done::before, .jaw__step.is-current::before { background: var(--sky-200); }
-.jaw__step.is-done::before { background: var(--sky-600); }
+.jaw__step.is-current::before { background: rgba(184, 150, 90, .3); }
+.jaw__step.is-done::before { background: var(--gold); }
 .jaw__step-fill {
   position: absolute; left: 0; right: 0; top: 9px; height: 4px; border-radius: 4px;
-  background: var(--sky-600); transform-origin: left;
+  background: var(--gold); transform-origin: left;
   animation: jaw-fill linear forwards;
 }
 @keyframes jaw-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 .jaw__text { margin-top: 14px; min-height: 196px; }
-.jaw__count { font-size: 13.5px; font-weight: 600; color: var(--sky-700); }
+.jaw__count { font-size: 13.5px; font-weight: 600; color: var(--gold); }
 .jaw__text h3 { margin-top: 6px; font-size: 21px; }
-.jaw__text p { margin-top: 10px; color: var(--slate); font-size: 15.5px; line-height: 1.6; }
+.jaw__text p { margin-top: 10px; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
 
 .jaw__controls { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 14px; }
 .jaw__play, .jaw__arrow {
   display: grid; place-items: center;
   width: 42px; height: 42px; padding: 0;
   border: 0; border-radius: 50%;
-  background: var(--sky-50); color: var(--sky-800);
+  background: rgba(245, 241, 232, .08); color: var(--fg);
   transition: background-color .2s, color .2s, opacity .2s;
 }
-.jaw__play { background: var(--sky-600); color: #fff; }
-.jaw__play:hover { background: var(--sky-700); }
-.jaw__arrow:hover:not(:disabled) { background: var(--sky-100); }
-.jaw__arrow:disabled { opacity: .4; cursor: default; }
+.jaw__play { background: var(--gold); color: var(--navy-900); }
+.jaw__play:hover { background: var(--gold-light); }
+.jaw__arrow:hover:not(:disabled) { background: rgba(245, 241, 232, .16); }
+.jaw__arrow:disabled { opacity: .35; cursor: default; }
 .jaw__nav { display: flex; gap: 6px; }
 .jaw__book { margin-left: auto; }
 

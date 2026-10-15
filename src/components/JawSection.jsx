@@ -62,7 +62,7 @@ export default function JawSection({ selection, onSelect }) {
   };
 
   return (
-    <section className="section section--tint jaw" id="treatment" aria-labelledby="treatment-title">
+    <section className="section section--navy on-dark jaw" id="treatment" aria-labelledby="treatment-title">
       <div className="container">
         <SectionHead
           id="treatment-title"
@@ -175,7 +175,7 @@ export default function JawSection({ selection, onSelect }) {
                   </button>
                 </div>
                 {scenario.service && (
-                  <button type="button" className="btn btn--primary btn--sm jaw__book" onClick={() => booking.open(scenario.service)}>
+                  <button type="button" className="btn btn--gold btn--sm jaw__book" onClick={() => booking.open(scenario.service)}>
                     Записаться
                   </button>
                 )}

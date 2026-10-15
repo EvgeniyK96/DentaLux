@@ -1,12 +1,13 @@
-.footer { background: var(--sky-900); color: rgba(255, 255, 255, .72); font-size: 15px; }
+.footer { background: var(--navy-900); color: var(--fg-2); font-size: 15px; }
 .footer__inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 40px; padding-block: 64px 40px; }
 .footer__brand p { margin-top: 18px; max-width: 34ch; }
 .footer__col { display: grid; align-content: start; gap: 10px; }
-.footer__col h4 { margin-bottom: 6px; color: #fff; font-size: 16px; }
-.footer__col a:hover { color: #fff; }
+.footer__col h4 { margin-bottom: 6px; font-size: 16px; }
+.footer__col a { transition: color .2s; }
+.footer__col a:hover { color: var(--gold); }
 .footer__bottom {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
-  padding-block: 22px 28px; border-top: 1px solid rgba(255, 255, 255, .12); font-size: 13.5px;
+  padding-block: 22px 28px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--fg-3);
 }
 @media (max-width: 860px) { .footer__inner { grid-template-columns: 1fr 1fr; } .footer__brand { grid-column: 1 / -1; } }
 @media (max-width: 480px) { .footer__inner { grid-template-columns: 1fr; } }

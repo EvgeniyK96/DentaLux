@@ -1,9 +1,10 @@
-.stats { padding-block: 8px clamp(40px, 6vw, 72px); }
+/* Тёмно-синяя полоса с цифрами сразу под первым экраном */
+.stats { padding-block: clamp(36px, 5vw, 56px); background: var(--navy-800); }
 .stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); }
 .stat { display: grid; gap: 6px; padding: 8px 28px; border-left: 1px solid var(--line); }
 .stat:first-child { border-left: 0; padding-left: 0; }
-.stat__value { font-family: var(--ff-display); font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; color: var(--sky-700); font-variant-numeric: tabular-nums; }
-.stat__label { font-size: 15px; color: var(--slate); }
+.stat__value { font-family: var(--ff-display); font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; color: var(--gold); font-variant-numeric: tabular-nums; }
+.stat__label { font-size: 15px; color: var(--fg-2); }
 
 @media (max-width: 760px) {
   .stats__grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }

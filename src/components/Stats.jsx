@@ -34,7 +34,7 @@ function Counter({ value, suffix = '' }) {
 
 export default function Stats() {
   return (
-    <section className="stats" aria-label="Клиника в цифрах">
+    <section className="stats on-dark" aria-label="Клиника в цифрах">
       <ul className="container stats__grid">
         {STATS.map((s, i) => (
           <m.li key={s.label} className="stat" {...reveal(rowDelay(i, 4))}>

@@ -14,7 +14,7 @@ export default function Reviews() {
     el.scrollBy({ left: dir * (card ? card.getBoundingClientRect().width + 20 : 320), behavior: 'smooth' });
   };
   return (
-    <section className="section section--tint" id="reviews" aria-labelledby="reviews-title">
+    <section className="section section--ivory" id="reviews" aria-labelledby="reviews-title">
       <div className="container">
         <div className="reviews__head">
           <SectionHead id="reviews-title" title="Что говорят пациенты" />

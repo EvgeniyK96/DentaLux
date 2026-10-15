@@ -7,10 +7,10 @@
   width: 100%; padding: 22px 4px; border: 0; background: none; text-align: left;
   font-size: 18px; font-weight: 600; line-height: 1.4;
 }
-.faq__q:hover { color: var(--sky-700); }
-.faq__q svg { flex-shrink: 0; color: var(--sky-600); transition: transform .3s var(--ease-out); }
+.faq__q:hover { color: var(--accent-ink); }
+.faq__q svg { flex-shrink: 0; color: var(--accent-ink); transition: transform .3s var(--ease-out); }
 .faq__item.is-open .faq__q svg { transform: rotate(45deg); }
 .faq__a { overflow: hidden; }
-.faq__a p { padding: 0 48px 24px 4px; color: var(--slate); }
+.faq__a p { padding: 0 48px 24px 4px; color: var(--fg-2); }
 @media (max-width: 860px) { .faq { grid-template-columns: 1fr; } .faq .section-head { margin-bottom: 8px; } }
 @media (max-width: 520px) { .faq__q { font-size: 16.5px; } .faq__a p { padding-right: 4px; } }

@@ -10,11 +10,11 @@ export default function CtaBand() {
   return (
     <section className="cta" id="contacts" aria-labelledby="cta-title">
       <div className="container">
-        <m.div className="cta__inner" {...reveal()}>
+        <m.div className="cta__inner on-dark" {...reveal()}>
         <div className="cta__text">
           <h2 id="cta-title">Запишитесь на бесплатную консультацию</h2>
           <p>Оставьте контакты — администратор перезвонит в течение 15 минут, ответит на вопросы и подберёт удобное время визита.</p>
-          <button type="button" className="btn btn--light btn--lg" onClick={() => booking.open('Консультация')}>
+          <button type="button" className="btn btn--gold btn--lg" onClick={() => booking.open('Консультация')}>
             Записаться на приём
           </button>
         </div>

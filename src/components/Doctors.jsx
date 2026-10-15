@@ -21,7 +21,7 @@ function Photo({ src, name }) {
 
 export default function Doctors() {
   return (
-    <section className="section section--tint" id="doctors" aria-labelledby="doctors-title">
+    <section className="section section--ivory" id="doctors" aria-labelledby="doctors-title">
       <div className="container">
         <SectionHead
           id="doctors-title"
